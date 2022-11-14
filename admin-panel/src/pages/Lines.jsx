@@ -1,6 +1,7 @@
-import React from 'react'
 
 import Table from '../components/table/Table'
+import NewLine from '../components/popup/NewLine'
+import React, { useState , useEffect} from "react";
 
 import LinesList from '../assets/JsonData/lines-list.json'
 
@@ -29,13 +30,21 @@ const renderBody = (item, index) => (
 )
 
 const Customers = () => {
+    const [popup, display] = useState(false);
+    const handleClick = () =>{
+        display(true);
+    }
+    const close = () =>{
+        display(false);
+    }
+    
     return (
         <div>
             <div className='top-lines'>
                 <h2 className="page-header">
                     Lines
                 </h2>
-                <button className='add-lines'>New Line</button>
+                <button className='add-lines' onClick={handleClick}>New Line</button>
             </div>
             
             <div className="row">
@@ -49,6 +58,10 @@ const Customers = () => {
                                 bodyData={LinesList}
                                 renderBody={(item, index) => renderBody(item, index)}
                             />
+                            <NewLine
+                                popup={popup}
+                                close={close}
+                            />
                         </div>
                     </div>
                 </div>
@@ -56,5 +69,8 @@ const Customers = () => {
         </div>
     )
 }
+
+
+
 
 export default Customers
