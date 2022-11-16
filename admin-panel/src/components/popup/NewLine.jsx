@@ -56,7 +56,7 @@ const NewLine = props => {
           console.log(line)
      }
 
-     
+
     return (
         <div className={`newline-popup ${!props.popup ? 'closed' : 'pop'}`}>
             <div className='form-new-line card'>
@@ -167,7 +167,7 @@ const NewLine = props => {
                        <div className='add-station sidebar__item-inner'>
                             Submit
                        </div>
-                       <button className='add-station sidebar__item-inner'>Submit</button>
+                       <button></button>
                        <div onClick={handleClick} className='add-station sidebar__item-inner'>
                             Cancel
                        </div>

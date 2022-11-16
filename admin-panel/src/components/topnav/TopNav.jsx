@@ -14,6 +14,32 @@ import user_image from '../../assets/images/admin.JPG'
 
 import user_menu from '../../assets/JsonData/user_menus.json'
 
+const logOut = () =>{
+    sessionStorage.setItem("access" , '');
+    fetch('http://localhost:5000/api/bsdem/logout', 
+        {
+            method:"POST", 
+            body:JSON.stringify({
+                "email" : "ayoubbsd4@gmail.com",
+                "password" : "hello",
+              }),
+            headers: {
+                'Access-Control-Allow-Origin':'*',
+                'Content-type': 'application/json; charset=UTF-8'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data=== "logout"){
+                console.log("logout")
+                window.open("about:blank", "_self");
+window.close();
+            }
+        })
+    
+}
+
+
 const curr_user = {
     display_name: 'Ayoub Basidi',
     image: user_image
@@ -38,12 +64,12 @@ const renderUserToggle = (user) => (
 )
 
 const renderUserMenu =(item, index) => (
-    <Link to='/' key={index}>
+    <a className='user-menu' onClick={(item.content==='Logout')? logOut : null}>
         <div className="notification-item">
             <i className={item.icon}></i>
             <span>{item.content}</span>
         </div>
-    </Link>
+    </a>
 )
 
 const Topnav = () => {
